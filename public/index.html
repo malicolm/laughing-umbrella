@@ -5,33 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type='module'>
-        import { populateText } from "./index.js"
-    </script>
-    <script>src = "https://unpkg.com/axios/dist/axios.min.js"</script>
 </head>
 
 <body>
-    <!-- <script>
-        var btn = document.createElement("BUTTON")
-        btn.innerHTML = "Click to generate new random user"
-        document.body.appendChild(btn);
-     </script> -->
-    <p>
-        <!-- <script>
-            const popText = () => {
-                let ele = document.getElementById('container');
-                ele.innerHTML += 'firstName\n';
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>        
+        const handleGetRandomUser = async () => {
+            const response = await axios.get('https://randomuser.me/api/')
+            const username = response.data.login.username
+            const generatedUser = {
+                gender: response.data.gender,
+                firstName: response.data.name.first,
+                lastName: response.data.name.last,
+                email: response.data.email,
+                age: response.data.dob.age,
             }
-            
-        </script> -->
+            //can append text from here
+            //using create eleent
+            console.log(generatedUser, "gen user")
+            return generatedUser
+        }
 
-        <script type='module'>
-            import { populateText } from "./index.js"
-            populateText()
-        </script>
+        const populateText = async () => {
+            await handleGetRandomUser()
+            let ele = document.getElementById('container');
+            ele.innerHTML += 'firstName';
+        }
 
-        <input type="button" onclick="populateText()" value="generate new user">
+        
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            contentLoaded();
+        });
+        function contentLoaded() {
+            document.getElementById("malcbutton").addEventListener("click", populateText, false);
+        }
+    </script>
+
+    <p>
+
+        <button id="malcbutton" type="button">hello</button>
+
+
     </p>
     <div id="container">
         <p>
@@ -39,16 +54,6 @@
         </p>
 
     </div>
-
-    <!-- <script>
-
-        const populateText = () =>{
-            let ele = document.getElementById('container');
-            ele.innerHTML += 'firstName\n';
-        }
-
-    </script> -->
-
 
 </body>
 

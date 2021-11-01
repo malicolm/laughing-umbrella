@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "./axios/index"
 
 const handleGetRandomUser =  async () => {
     const response = await axios.get('https://randomuser.me/api/')
