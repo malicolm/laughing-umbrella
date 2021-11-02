@@ -1,9 +1,8 @@
-import axios from "./axios/index"
+import axios from "axios"
 
 const handleGetRandomUser =  async () => {
-    console.log("working?")
     const response = await axios.get('https://randomuser.me/api/')
-    //const username = response.data.login.username
+    const username = response.data.login.username
     const generatedUser = {
         gender: response.data.gender,
         firstName: response.data.name.first,
@@ -11,21 +10,17 @@ const handleGetRandomUser =  async () => {
         email: response.data.email,
         age: response.data.dob.age,
     }
-    
     //can append text from here
     //using create eleent
-    //console.log(generatedUser, "gen user")
     return generatedUser
 }
 
-export async function populateText(){
-    console.log("working?")
-    await handleGetRandomUser()
+export function populateText(){
     let ele = document.getElementById('container');
     ele.innerHTML += 'firstName';
 }
 
 console.log("working?")
-function test(){
+export function test(){
     console.log("test");
 }
