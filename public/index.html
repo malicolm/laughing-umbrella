@@ -11,15 +11,17 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         const handleGetRandomUser = async () => {
-            const response = await axios.get("https://randomuser.me/api/");
-            const username = response.data.login.username;
+            const response = await axios.get('https://randomuser.me/api/')
+            console.log(response)
+            const user = response.data.results[0]
             const generatedUser = {
-                gender: response.data.gender,
-                firstName: response.data.name.first,
-                lastName: response.data.name.last,
-                email: response.data.email,
-                age: response.data.dob.age,
-            };
+                gender: user.gender,
+                firstName: user.name.first,
+                lastName: user.name.last,
+                email: user.email,
+                age: user.dob.age,
+                picture: user.picture.medium
+            }
             //can append text from here
             //using create eleent
             console.log(generatedUser, "gen user");
@@ -27,10 +29,25 @@
         };
 
         const populateText = async () => {
-            await handleGetRandomUser();
-            let ele = document.getElementById("container");
-            ele.innerHTML += "firstName";
-        };
+            const generatedUser = await handleGetRandomUser()
+
+            const newDiv = document.createElement("container")
+            newDiv.setAttribute('id', 'container')
+            const name = document.createTextNode(`Hello: ${generatedUser.firstName} ${generatedUser.lastName}`)
+
+            newDiv.appendChild(name)
+
+            var img = document.createElement('img')
+            img.src = generatedUser.picture
+            newDiv.appendChild(img)
+
+            const currentDiv = document.getElementById("container")
+        
+            
+            currentDiv.replaceWith(newDiv)
+        }
+
+        
 
         window.addEventListener("DOMContentLoaded", (event) => {
             contentLoaded();
