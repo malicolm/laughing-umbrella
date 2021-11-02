@@ -1,0 +1,29 @@
+.myClass {
+  background-color: red;
+  height: 100px;
+  width: 100px;
+}
+
+html {
+  background-color: #494d54;
+  margin: 0;
+  padding: 0;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.person-card {
+  width: 40.011160714285715vw;
+  height: 41.922695738354804vh;
+
+  background: #84c0f2;
+  border-radius: 5px;
+}
+
